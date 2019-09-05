@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div>This is Home Component</div>
+</template>
 
 <script lang="ts">
 import Vue from 'vue';

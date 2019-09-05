@@ -1,26 +1,26 @@
 <template>
   <v-app>
-    <!-- headerZ -->
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>MarkDown App</span>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-    </v-app-bar>
-
+    <!-- header -->
+    <TheHeader />
     <v-content>
       <!-- ここにコンポーネントを配置する -->
+      <!-- router-view はvue-routerに登録されていえるURLのコンポーネントを表示する -->
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapActions } from 'vuex';
+import firebase from 'firebase';
+import TheHeader from './components/TheHeader.vue';
 
 export default Vue.extend({
   name: 'App',
-  components: {},
+  components: {
+    TheHeader,
+  },
   data: () => ({}),
 });
 </script>
