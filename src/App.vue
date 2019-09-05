@@ -10,6 +10,11 @@
 
       <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
       <v-btn @click="logout" v-if="$store.state.login_user">ログアウト</v-btn>
+      <v-progress-linear
+      :active="loading"
+      :indeterminate="loading"
+      absolute bottom color="deep-purple accent-4"
+    />
     </v-app-bar>
 
     <v-content>
@@ -27,15 +32,25 @@ import firebase from 'firebase';
 export default Vue.extend({
   name: 'App',
   components: {},
-  data: () => ({}),
+  data: () => ({
+    loading: true,
+  }),
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setLoginUser(user);
+        this.loading = false;
       } else {
         this.deleteLoginUser();
+        this.loading = false;
       }
     });
+  },
+  watch: {
+    loading (val) {
+      if (!val) return
+      setTimeout(() => (this.loading = false), 3000)
+    },
   },
   methods: {
     ...mapActions(['setLoginUser', 'login', 'logout', 'deleteLoginUser']),
