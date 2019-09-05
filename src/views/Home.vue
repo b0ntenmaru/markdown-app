@@ -1,5 +1,5 @@
 <template>
-  <div>hello</div>
+  <div>This is Home Component</div>
 </template>
 
 <script lang="ts">
