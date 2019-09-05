@@ -7,6 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     login_user: null,
+    theme: {
+      dark: true,
+    },
   },
   mutations: {
     setLoginUser(state, user): void {

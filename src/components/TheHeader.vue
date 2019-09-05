@@ -1,19 +1,20 @@
 <template>
-    <!-- header -->
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>MarkDown App</span>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-
+      <router-link :to="{name: 'editor'}">
+        <v-btn color="info">新規</v-btn>
+      </router-link>
       <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
       <v-btn @click="logout" v-if="$store.state.login_user">ログアウト</v-btn>
       <v-progress-linear
-      :active="loading"
-      :indeterminate="loading"
-      absolute bottom color="red accent-4"
-    />
+        :active="loading"
+        :indeterminate="loading"
+        absolute bottom color="red accent-4"
+      />
     </v-app-bar>
 </template>
 

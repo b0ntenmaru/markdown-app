@@ -12,7 +12,9 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "vuetify"
+      "vuetify",
+      "marked",
+      "vuetify-markdown-editor",
     ],
     "paths": {
       "@/*": [
