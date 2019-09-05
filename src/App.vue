@@ -7,10 +7,13 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
+
+      <v-btn>ログイン</v-btn>
     </v-app-bar>
 
     <v-content>
       <!-- ここにコンポーネントを配置する -->
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
