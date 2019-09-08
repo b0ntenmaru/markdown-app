@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     login_user: null,
+    isloading: true,
     theme: {
       dark: true,
     },
@@ -16,8 +17,12 @@ export default new Vuex.Store({
       state.login_user = user;
     },
 
-    deleteLoginUser(state) {
+    deleteLoginUser(state): void {
       state.login_user = null;
+    },
+
+    toggleLoading(state) {
+      state.isloading = !state.isloading;
     },
   },
   actions: {
@@ -39,6 +44,9 @@ export default new Vuex.Store({
 
     deleteLoginUser({ commit }): void {
       commit('deleteLoginUser');
+    },
+    toggleLoading({ commit }) {
+      commit('toggleLoading');
     },
   },
   getters: {

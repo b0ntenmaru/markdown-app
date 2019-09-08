@@ -16,7 +16,7 @@ export default Vue.extend({
     input: '# hello',
   }),
   computed: {
-    compiledMarkdown() {
+    compiledMarkdown(): string {
       return marked(this.input, { sanitize: true });
     },
   },

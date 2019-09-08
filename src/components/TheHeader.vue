@@ -5,14 +5,14 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn color="primary" fab small dark :to="{ name: 'editor'}" v-if="$store.state.login_user">
+      <v-btn style="margin-right: 10px" color="primary" fab small dark :to="{ name: 'editor'}" v-if="$store.state.login_user">
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
       <v-btn @click="logout" v-if="$store.state.login_user">ログアウト</v-btn>
       <v-progress-linear
-        :active="loading"
-        :indeterminate="loading"
+        :active="$store.state.isloading"
+        :indeterminate="$store.state.isloading"
         absolute bottom color="red accent-4"
       />
     </v-app-bar>
@@ -25,30 +25,19 @@ import firebase from 'firebase';
 
 export default Vue.extend({
   name: 'TheHeader',
-  components: {},
-  data: () => ({
-    loading: true,
-  }),
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setLoginUser(user);
-        this.loading = false;
+        // this.toggleLoading();
       } else {
         this.deleteLoginUser();
-        this.loading = false;
+        // this.toggleLoading();
       }
     });
   },
-  watch: {
-    loading(val) {
-      if (!val) {
-        return;
-      }
-    },
-  },
   methods: {
-    ...mapActions(['setLoginUser', 'login', 'logout', 'deleteLoginUser']),
+    ...mapActions(['setLoginUser', 'login', 'logout', 'deleteLoginUser', 'toggleLoading']),
   },
 });
 </script>
