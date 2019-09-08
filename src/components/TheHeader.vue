@@ -1,13 +1,13 @@
 <template>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>MarkDown App</span>
+      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'home'})">
+        <span >MarkDown App</span>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <router-link :to="{name: 'editor'}">
-        <v-btn color="info">新規</v-btn>
-      </router-link>
+      <v-btn color="primary" fab small dark :to="{ name: 'editor'}" v-if="$store.state.login_user">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
       <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
       <v-btn @click="logout" v-if="$store.state.login_user">ログアウト</v-btn>
       <v-progress-linear
@@ -24,7 +24,7 @@ import { mapActions } from 'vuex';
 import firebase from 'firebase';
 
 export default Vue.extend({
-  name: 'Header',
+  name: 'TheHeader',
   components: {},
   data: () => ({
     loading: true,
@@ -45,7 +45,6 @@ export default Vue.extend({
       if (!val) {
         return;
       }
-      setTimeout(() => (this.loading = false), 3000);
     },
   },
   methods: {
