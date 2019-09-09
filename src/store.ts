@@ -11,6 +11,7 @@ export default new Vuex.Store({
     theme: {
       dark: true,
     },
+    markdowns: [],
   },
   mutations: {
     setLoginUser(state, user): void {
@@ -23,6 +24,10 @@ export default new Vuex.Store({
 
     toggleLoading(state) {
       state.isloading = !state.isloading;
+    },
+
+    addMarkdown(state, markdown) {
+      state.markdowns.push(markdown);
     },
   },
   actions: {
@@ -37,7 +42,6 @@ export default new Vuex.Store({
       commit('setLoginUser', user);
     },
 
-    // firebase ログアウト処理
     logout(): void {
       firebase.auth().signOut();
     },
@@ -47,6 +51,12 @@ export default new Vuex.Store({
     },
     toggleLoading({ commit }) {
       commit('toggleLoading');
+    },
+
+    addMarkdown({getters, commit}, markdownText: any): void {
+      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText }).then((doc: any) => {
+        commit('addMarkdown', { id: doc.id, markdownText });
+      });
     },
   },
   getters: {
