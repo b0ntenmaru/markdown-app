@@ -1,8 +1,8 @@
 <template>
-  <div id="markdown-editor">
-    <textarea class="editor"  :value="input" @input="update"></textarea>
-    <div class="white preview" v-html="compiledMarkdown"></div>
-  </div>
+    <div id="markdown-editor">
+      <textarea class="editor"  :value="markdownText" @input="update"></textarea>
+      <div class="white preview" v-html="compiledMarkdown"></div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -13,18 +13,19 @@ import marked from 'marked';
 export default Vue.extend({
   name: 'MarkdownEditor',
   data: () => ({
-    input: '# hello',
+    markdownText: '# hello',
   }),
   computed: {
     compiledMarkdown(): string {
-      return marked(this.input, { sanitize: true });
+      return marked(this.markdownText, { sanitize: true });
     },
   },
   methods: {
+    // ...mapActions(['addMarkdown']),
     update(e: any) {
       setTimeout(() => {
-        this.input = e.target.value;
-      }, 300);
+        this.markdownText = e.target.value;
+      }, 300)
     },
   },
 });
