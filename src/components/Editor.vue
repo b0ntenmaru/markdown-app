@@ -1,7 +1,9 @@
 <template>
     <div id="markdown-editor">
-      <textarea class="editor"  :value="markdownText" @input="update"></textarea>
-      <div class="white preview" v-html="compiledMarkdown"></div>
+        <label>
+            <textarea class="editor"  :value="markdownText" @input="update"></textarea>
+        </label>
+        <div class="white preview" v-html="compiledMarkdown"></div>
     </div>
 </template>
 

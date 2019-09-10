@@ -19,7 +19,9 @@ import { mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'home',
-  methods: {},
+  methods: {
+    ...mapActions(['login']),
+  },
 });
 </script>
 
