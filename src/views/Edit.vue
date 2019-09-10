@@ -1,6 +1,9 @@
 <template>
   <div id="edit-component">
-    <Editor />
+    <Editor
+      :markdownText="markdownText"
+      :updateText="updateText"
+    />
   </div>
 </template>
 
@@ -9,10 +12,24 @@ import Vue from 'vue';
 import Editor from '../components/Editor.vue';
 
 
+
 export default Vue.extend({
   name: 'edit',
   components: {
     Editor,
+  },
+
+  data: () => ({
+    markdownText: '# hello',
+  }),
+
+  methods: {
+    updateText(e: {target: { value: string }}) {
+      setTimeout(() => {
+        this.markdownText = e.target.value;
+        // 入力された文字列が更新されたタイミングでsubmitメソッドを発火したい
+      }, 400);
+    },
   },
 });
 </script>
