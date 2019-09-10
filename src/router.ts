@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import Editor from './views/Editor.vue';
+import Edit from './views/Edit.vue';
 
 Vue.use(Router);
 
@@ -15,9 +15,9 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/editor',
-      name: 'editor',
-      component: Editor,
+      path: '/markdowns/:markdown_id?/edit',
+      name: 'edit',
+      component: Edit,
     },
   ],
 });

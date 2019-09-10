@@ -13,6 +13,7 @@ export default new Vuex.Store({
     },
     markdowns: [],
   },
+
   mutations: {
     setLoginUser(state, user): void {
       state.login_user = user;
@@ -26,10 +27,11 @@ export default new Vuex.Store({
       state.isloading = !state.isloading;
     },
 
-    addMarkdown(state, markdown) {
+    addMarkdown(state: { markdowns: object[]}, markdown: object) {
       state.markdowns.push(markdown);
     },
   },
+
   actions: {
     // firebase ログイン処理
     login(): void {
@@ -54,7 +56,8 @@ export default new Vuex.Store({
     },
 
     addMarkdown({getters, commit}, markdownText: any): void {
-      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText }).then((doc: any) => {
+      // tslint:disable-next-line:max-line-length
+      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText }).then((doc: {id: string}) => {
         commit('addMarkdown', { id: doc.id, markdownText });
       });
     },

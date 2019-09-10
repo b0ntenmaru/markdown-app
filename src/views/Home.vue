@@ -20,7 +20,7 @@ import { mapActions } from 'vuex';
 export default Vue.extend({
   name: 'home',
   methods: {
-    ...mapActions(['setLoginUser', 'login', 'logout', 'deleteLoginUser']),
+    ...mapActions(['login']),
   },
 });
 </script>
