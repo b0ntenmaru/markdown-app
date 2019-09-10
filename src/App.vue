@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <!-- header -->
-    <TheHeader />
+    <the-header />
     <v-content>
-      <!-- ここにコンポーネントを配置する -->
+      <!-- ここにコンポーネントを配置される -->
       <!-- router-view はvue-routerに登録されていえるURLのコンポーネントを表示する -->
       <router-view></router-view>
     </v-content>
