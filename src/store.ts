@@ -32,6 +32,10 @@ export default new Vuex.Store({
       state.markdowns.push(markdown);
     },
 
+    updateMarkdown(state: { markdowns: object[]} , markdown: {id: string, markdownText: string}): void {
+      const index: number = state.markdowns.findIndex((md: any) => md.id === markdown.id);
+      state.markdowns[index] = markdown;
+    },
 
   },
 
@@ -64,7 +68,6 @@ export default new Vuex.Store({
         firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText: '' }).then((doc: { id: string }) => {
           // 保存されたidのURLを開く
           router.push({ name: 'edit', params: { markdown_id: doc.id } });
-
           commit('addMarkdown', { id: doc.id, markdownText: '' });
         });
       }
@@ -72,10 +75,12 @@ export default new Vuex.Store({
     // TODO 文字を入力した後にIndexに戻ると中身が更新されていない状態になっている
     // 理由は、firestoreに更新をかけただけで、stateの値が書き換わっていないから
     // なのでstateの値も更新する実装が必要になる。
-    updateMarkdown(context: any, { markdownText, markdownId }): void {
-      if (context.getters.uid) {
+    updateMarkdown({commit, getters}, { markdownText, markdownId }): void {
+      if (getters.uid) {
         // tslint:disable-next-line: max-line-length
-        firebase.firestore().collection(`users/${context.getters.uid}/markdowns`).doc(markdownId).update({ markdownText });
+        firebase.firestore().collection(`users/${getters.uid}/markdowns`).doc(markdownId).update({ markdownText }).then(() => {
+          commit('updateMarkdown', { markdownText, id: markdownId });
+        });
       }
     },
 

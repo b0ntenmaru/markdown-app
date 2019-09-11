@@ -43,6 +43,7 @@ export default Vue.extend({
       setTimeout(() => {
         this.markdownText = e.target.value;
         // 入力された文字列が更新されたタイミングでsubmitメソッドを発火したい
+        // tslint:disable-next-line:max-line-length
         this.$store.dispatch('updateMarkdown', { markdownText: this.markdownText, markdownId: this.$route.params.markdown_id });
       }, 500);
     },
