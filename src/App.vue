@@ -28,10 +28,9 @@ export default Vue.extend({
       if (user) {
         this.setLoginUser(user);
         this.fetchMarkdowns();
-        // this.toggleLoading();
+        this.toggleLoading();
       } else {
         this.deleteLoginUser();
-        // this.toggleLoading();
       }
     });
   },

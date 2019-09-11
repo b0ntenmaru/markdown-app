@@ -13,7 +13,8 @@
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <DropDown />
+      <v-btn color="info" v-if="!$store.state.login_user" @click="login">ログイン</v-btn>
+      <DropDown v-if="$store.state.login_user" />
       <v-progress-linear
         :active="$store.state.isloading"
         :indeterminate="$store.state.isloading"
@@ -31,11 +32,11 @@ import DropDown from '../components/DropDown.vue';
 export default Vue.extend({
   name: 'TheHeader',
   components: {
-    DropDown
+    DropDown,
   },
 
   methods: {
-    ...mapActions(['addMarkdown']),
+    ...mapActions(['addMarkdown', 'login']),
   },
 });
 </script>

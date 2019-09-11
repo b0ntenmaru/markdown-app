@@ -14,7 +14,7 @@ export default new Vuex.Store({
     },
     markdowns: [],
   },
-
+  // TODO 引数がobjectとなるケースが多いので別ファイルでinterfaceを用意する
   mutations: {
     setLoginUser(state, user): void {
       state.login_user = user;
@@ -22,6 +22,7 @@ export default new Vuex.Store({
 
     deleteLoginUser(state): void {
       state.login_user = null;
+      state.isloading = !state.isloading;
     },
 
     toggleLoading(state) {

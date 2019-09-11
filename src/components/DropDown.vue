@@ -6,11 +6,8 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-item>
-            <v-list-item-title class="drop-down-btn" @click="login" v-show="!$store.state.login_user">
-              ログイン
-            </v-list-item-title>
-            <v-list-item-title class="drop-down-btn" @click="logout" v-if="$store.state.login_user">
+          <v-list-item  class="drop-down-btn red">
+            <v-list-item-title @click="logout">
               ログアウト
             </v-list-item-title>
           </v-list-item>
@@ -25,7 +22,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default Vue.extend({
   name: 'DropDown',
   computed: {
-    ...mapGetters(['photoURL', 'userName'])
+    ...mapGetters(['photoURL', 'userName']),
   },
 
   methods: {
@@ -37,7 +34,9 @@ export default Vue.extend({
 <style scoped>
 .drop-down-btn {
   text-align: center;
+  cursor: pointer;
 }
+
 .v-list {
   padding-top: 0;
   padding-bottom: 0;
