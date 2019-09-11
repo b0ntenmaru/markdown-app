@@ -1,6 +1,6 @@
 <template>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'home'})">
+      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'index'})">
         <span >MarkDown App</span>
       </v-toolbar-title>
 
@@ -25,19 +25,8 @@ import firebase from 'firebase';
 
 export default Vue.extend({
   name: 'TheHeader',
-  created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setLoginUser(user);
-        // this.toggleLoading();
-      } else {
-        this.deleteLoginUser();
-        // this.toggleLoading();
-      }
-    });
-  },
   methods: {
-    ...mapActions(['setLoginUser', 'login', 'logout', 'deleteLoginUser', 'toggleLoading']),
+    ...mapActions(['login', 'logout']),
   },
 });
 </script>
