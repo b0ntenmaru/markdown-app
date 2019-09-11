@@ -76,5 +76,7 @@ export default new Vuex.Store({
     userName: (state: any) => state.login_user ? state.login_user.displayName : '',
     photoURL: (state: any) => state.login_user ? state.login_user.photoURL : '',
     uid: (state: any) => state.login_user ? state.login_user.uid : null,
+    // tslint:disable-next-line: max-line-length
+    getMarkdownById: (state: any) => (id: string) => state.markdowns.find((markdown: {id: string}) => markdown.id === id),
   },
 });
