@@ -20,9 +20,21 @@ export default Vue.extend({
   components: {
     Editor,
   },
+  created() {
+    if (!this.$route.params.markdown_id) {
+      return;
+    }
+
+    const markdown = this.$store.getters.getMarkdownById(this.$route.params.markdown_id);
+    if (markdown) {
+      this.markdownText = markdown.markdownText;
+    } else {
+      this.$router.push({ name: 'index'});
+    }
+  },
 
   data: () => ({
-    markdownText: '# hello',
+    markdownText: '',
   }),
 
   methods: {
