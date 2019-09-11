@@ -37,6 +37,11 @@ export default new Vuex.Store({
       state.markdowns[index] = markdown;
     },
 
+    deleteMarkdown(state: {markdowns: object[]}, markdown: {id: string, markdownText: string}): void {
+      const index: number = state.markdowns.findIndex((md: any) => md.id === markdown.id);
+      state.markdowns.splice(index, 1);
+    },
+
   },
 
   actions: {
@@ -80,6 +85,14 @@ export default new Vuex.Store({
         // tslint:disable-next-line: max-line-length
         firebase.firestore().collection(`users/${getters.uid}/markdowns`).doc(markdownId).update({ markdownText }).then(() => {
           commit('updateMarkdown', { markdownText, id: markdownId });
+        });
+      }
+    },
+
+    deleteMarkdown({ commit, getters}, markdown: { id: string}): void {
+      if (getters.uid) {
+        firebase.firestore().collection(`users/${getters.uid}/markdowns`).doc(markdown.id).delete().then(() => {
+          commit('deleteMarkdown', markdown)
         });
       }
     },

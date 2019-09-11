@@ -24,6 +24,7 @@
           >
             <v-card-title>{{ markdown.markdownText }}</v-card-title>
             <v-card-text>{{ markdown.id }}</v-card-text>
+            <v-card-text @click="deleteMarkdown(markdown)">X</v-card-text>
           </v-card>
       </v-flex>
     </v-layout>
@@ -45,7 +46,7 @@ export default Vue.extend({
   },
 
   methods: {
-    ...mapActions(['login', 'fetchMarkdowns']),
+    ...mapActions(['login', 'fetchMarkdowns', 'deleteMarkdown']),
     toEditPage(id: string) {
       this.$router.push({ name: 'edit', params: { markdown_id: id }});
     },
