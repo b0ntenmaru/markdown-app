@@ -5,7 +5,12 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn style="margin-right: 10px" color="primary" fab small dark :to="{ name: 'edit'}" v-if="$store.state.login_user">
+      <v-btn
+        style="margin-right: 10px"
+        color="primary" fab small dark
+        v-if="$store.state.login_user"
+        @click="addMarkdown"
+      >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
@@ -26,7 +31,7 @@ import firebase from 'firebase';
 export default Vue.extend({
   name: 'TheHeader',
   methods: {
-    ...mapActions(['login', 'logout']),
+    ...mapActions(['login', 'logout', 'addMarkdown']),
   },
 });
 </script>

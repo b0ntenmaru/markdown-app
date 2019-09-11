@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from 'firebase';
+import router from './router';
 
 Vue.use(Vuex);
 
@@ -57,11 +58,25 @@ export default new Vuex.Store({
       commit('toggleLoading');
     },
 
-    addMarkdown({getters, commit}, markdownText: any): void {
-      // tslint:disable-next-line:max-line-length
-      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ id: getters.uid, markdownText }).then((doc: {id: string}) => {
-        commit('addMarkdown', { id: doc.id, markdownText });
-      });
+    addMarkdown({ getters, commit }): void {
+      if (getters.uid) {
+        // tslint:disable-next-line:max-line-length
+        firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText: '' }).then((doc: { id: string }) => {
+          // 保存されたidのURLを開く
+          router.push({ name: 'edit', params: { markdown_id: doc.id } });
+
+          commit('addMarkdown', { id: doc.id, markdownText: '' });
+        });
+      }
+    },
+    // TODO 文字を入力した後にIndexに戻ると中身が更新されていない状態になっている
+    // 理由は、firestoreに更新をかけただけで、stateの値が書き換わっていないから
+    // なのでstateの値も更新する実装が必要になる。
+    updateMarkdown(context: any, { markdownText, markdownId }): void {
+      if (context.getters.uid) {
+        // tslint:disable-next-line: max-line-length
+        firebase.firestore().collection(`users/${context.getters.uid}/markdowns`).doc(markdownId).update({ markdownText });
+      }
     },
 
     fetchMarkdowns({ getters, commit }) {
