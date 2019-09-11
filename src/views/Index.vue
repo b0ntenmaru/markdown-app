@@ -1,5 +1,5 @@
 <template>
-  <v-container text-xs-center justify-center class="home-container">
+  <v-container text-xs-center justify-center class="index-container">
     <v-layout row wrap>
       <v-flex xs12>
         <h1>Mackdown App</h1>
@@ -18,7 +18,7 @@ import Vue from 'vue';
 import { mapActions } from 'vuex';
 
 export default Vue.extend({
-  name: 'home',
+  name: 'index',
   methods: {
     ...mapActions(['login']),
   },
@@ -26,7 +26,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.home-container {
+.index-container {
   text-align: center;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'home'})">
+      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'index'})">
         <span >MarkDown App</span>
       </v-toolbar-title>
 
