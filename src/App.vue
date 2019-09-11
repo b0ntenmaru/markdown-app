@@ -12,13 +12,31 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapActions } from 'vuex';
+
 import TheHeader from './components/TheHeader.vue';
+import firebase from 'firebase';
 
 export default Vue.extend({
   name: 'App',
   components: {
     TheHeader,
   },
-  data: () => ({}),
+
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setLoginUser(user);
+        // this.toggleLoading();
+      } else {
+        this.deleteLoginUser();
+        // this.toggleLoading();
+      }
+    });
+  },
+
+  data: () => ({
+    ...mapActions(['setLoginUser', 'deleteLoginUser', 'toggleLoading']),
+  }),
 });
 </script>
