@@ -30,6 +30,8 @@ export default new Vuex.Store({
     addMarkdown(state: { markdowns: object[]}, markdown: object) {
       state.markdowns.push(markdown);
     },
+
+
   },
 
   actions: {
@@ -57,8 +59,19 @@ export default new Vuex.Store({
 
     addMarkdown({getters, commit}, markdownText: any): void {
       // tslint:disable-next-line:max-line-length
-      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ markdownText }).then((doc: {id: string}) => {
+      firebase.firestore().collection(`users/${getters.uid}/markdowns`).add({ id: getters.uid, markdownText }).then((doc: {id: string}) => {
         commit('addMarkdown', { id: doc.id, markdownText });
+      });
+    },
+
+    fetchMarkdowns({ getters, commit }) {
+      firebase.firestore().collection(`users/${getters.uid}/markdowns`).get().then((snapshot: any) => {
+        // snapshot.forEach((doc: any) => commit('addMarkdown', {
+        //   id: doc.id,
+        //   markdownText: doc.data().markdownText,
+        // }));
+        // tslint:disable-next-line: no-console
+        console.log(snapshot);
       });
     },
   },

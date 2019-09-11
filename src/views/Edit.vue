@@ -1,5 +1,6 @@
 <template>
   <div id="edit-component">
+    <!-- <a @click="addMarkdown(markdownText)">Submit</a> -->
     <Editor
       :markdownText="markdownText"
       :updateText="updateText"
@@ -10,6 +11,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Editor from '../components/Editor.vue';
+import { mapActions } from 'vuex';
 
 
 
@@ -24,6 +26,7 @@ export default Vue.extend({
   }),
 
   methods: {
+    ...mapActions(['addMarkdown']),
     updateText(e: {target: { value: string }}) {
       setTimeout(() => {
         this.markdownText = e.target.value;
