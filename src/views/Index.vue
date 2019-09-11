@@ -21,7 +21,7 @@
         max-width="344"
         outlined
       >
-        <v-list-item three-line>
+        <v-list-item three-line @click="toEditPage(markdown.id)">
           <v-list-item-content>
             <v-list-item-title class="headline mb-1">{{ markdown.markdownText }}</v-list-item-title>
             <v-list-item-subtitle>{{ markdown.id }}</v-list-item-subtitle>
@@ -48,6 +48,9 @@ export default Vue.extend({
 
   methods: {
     ...mapActions(['login', 'fetchMarkdowns']),
+    toEditPage(id: string) {
+      this.$router.push({ name: 'edit', params: { markdown_id: id }});
+    },
   },
 });
 </script>

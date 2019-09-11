@@ -15,7 +15,7 @@ export default new Router({
       component: Index,
     },
     {
-      path: '/markdowns/:markdown_id?/edit',
+      path: '/:markdown_id?/edit',
       name: 'edit',
       component: Edit,
     },
