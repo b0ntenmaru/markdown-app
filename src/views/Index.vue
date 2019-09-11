@@ -14,20 +14,21 @@
 
     <!-- ログイン時 -->
     <v-layout v-else>
-      <v-card
-        v-for="markdown in markdowns"
-        :key="markdown.id"
-        class="mx-auto"
-        max-width="344"
-        outlined
-      >
-        <v-list-item three-line @click="toEditPage(markdown.id)">
-          <v-list-item-content>
-            <v-list-item-title class="headline mb-1">{{ markdown.markdownText }}</v-list-item-title>
-            <v-list-item-subtitle>{{ markdown.id }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card>
+        <v-row>
+          <v-col class="markdown-card-container">
+            <v-card
+              v-for="markdown in markdowns"
+              :key="markdown.id"
+              outlined
+              class="markdown-card"
+            >
+              <v-card-text class="white--text" @click="toEditPage(markdown.id)" three-line>
+                <div class="headline mb-2">{{ markdown.markdownText }}</div>
+                {{ markdown.id }}
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
     </v-layout>
   </v-container>
 </template>
@@ -58,5 +59,14 @@ export default Vue.extend({
 <style scoped>
 .index-container {
   text-align: center;
+}
+
+.markdown-card {
+  margin-bottom: 10px;
+}
+
+.markdown-card-container {
+  padding-right: 65px;
+  padding-left: 65px;
 }
 </style>
