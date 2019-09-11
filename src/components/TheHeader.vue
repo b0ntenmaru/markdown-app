@@ -13,8 +13,7 @@
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <v-btn @click="login" v-show="!$store.state.login_user">ログイン</v-btn>
-      <v-btn @click="logout" v-if="$store.state.login_user">ログアウト</v-btn>
+      <DropDown />
       <v-progress-linear
         :active="$store.state.isloading"
         :indeterminate="$store.state.isloading"
@@ -27,11 +26,16 @@
 import Vue from 'vue';
 import { mapActions } from 'vuex';
 import firebase from 'firebase';
+import DropDown from '../components/DropDown.vue';
 
 export default Vue.extend({
   name: 'TheHeader',
+  components: {
+    DropDown
+  },
+
   methods: {
-    ...mapActions(['login', 'logout', 'addMarkdown']),
+    ...mapActions(['addMarkdown']),
   },
 });
 </script>
