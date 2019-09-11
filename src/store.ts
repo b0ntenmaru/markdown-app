@@ -66,12 +66,9 @@ export default new Vuex.Store({
 
     fetchMarkdowns({ getters, commit }) {
       firebase.firestore().collection(`users/${getters.uid}/markdowns`).get().then((snapshot: any) => {
-        // snapshot.forEach((doc: any) => commit('addMarkdown', {
-        //   id: doc.id,
-        //   markdownText: doc.data().markdownText,
-        // }));
-        // tslint:disable-next-line: no-console
-        console.log(snapshot);
+        snapshot.forEach((doc: any) => {
+          commit('addMarkdown', { id: doc.id, markdownText: doc.data().markdownText });
+        });
       });
     },
   },

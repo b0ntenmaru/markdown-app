@@ -27,6 +27,7 @@ export default Vue.extend({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setLoginUser(user);
+        this.fetchMarkdowns();
         // this.toggleLoading();
       } else {
         this.deleteLoginUser();
@@ -36,7 +37,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-    ...mapActions(['setLoginUser', 'deleteLoginUser', 'toggleLoading']),
+    ...mapActions(['setLoginUser', 'deleteLoginUser', 'toggleLoading', 'fetchMarkdowns']),
   }),
 });
 </script>
