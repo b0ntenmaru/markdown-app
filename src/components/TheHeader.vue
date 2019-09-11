@@ -13,7 +13,8 @@
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <DropDown />
+      <v-btn color="info" v-if="!$store.state.login_user" @click="login">ログイン</v-btn>
+      <DropDown v-if="$store.state.login_user" />
       <v-progress-linear
         :active="$store.state.isloading"
         :indeterminate="$store.state.isloading"
@@ -35,7 +36,7 @@ export default Vue.extend({
   },
 
   methods: {
-    ...mapActions(['addMarkdown']),
+    ...mapActions(['addMarkdown', 'login']),
   },
 });
 </script>

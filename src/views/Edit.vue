@@ -1,6 +1,5 @@
 <template>
   <div id="edit-component">
-    <!-- <a @click="addMarkdown(markdownText)">Submit</a> -->
     <Editor
       :markdownText="markdownText"
       :updateText="updateText"
@@ -12,8 +11,6 @@
 import Vue from 'vue';
 import Editor from '../components/Editor.vue';
 import { mapActions } from 'vuex';
-
-
 
 export default Vue.extend({
   name: 'edit',
@@ -47,7 +44,7 @@ export default Vue.extend({
         this.$store.dispatch('updateMarkdown', { markdownText: this.markdownText, markdownId: this.$route.params.markdown_id });
       }, 500);
     },
-    ...mapActions(['addMarkdown', 'updateMarkdown']),
+    ...mapActions(['updateMarkdown']),
   },
 });
 </script>

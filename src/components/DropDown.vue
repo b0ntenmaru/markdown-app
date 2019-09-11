@@ -7,10 +7,7 @@
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title class="drop-down-btn" @click="login" v-show="!$store.state.login_user">
-              ログイン
-            </v-list-item-title>
-            <v-list-item-title class="drop-down-btn" @click="logout" v-if="$store.state.login_user">
+            <v-list-item-title class="drop-down-btn" @click="logout">
               ログアウト
             </v-list-item-title>
           </v-list-item>
