@@ -38,13 +38,15 @@ export default Vue.extend({
   }),
 
   methods: {
-    ...mapActions(['addMarkdown']),
+
     updateText(e: {target: { value: string }}) {
       setTimeout(() => {
         this.markdownText = e.target.value;
         // 入力された文字列が更新されたタイミングでsubmitメソッドを発火したい
-      }, 400);
+        this.$store.dispatch('updateMarkdown', { markdownText: this.markdownText, markdownId: this.$route.params.markdown_id });
+      }, 500);
     },
+    ...mapActions(['addMarkdown', 'updateMarkdown']),
   },
 });
 </script>
