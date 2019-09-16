@@ -16,8 +16,8 @@
       <v-btn color="info" v-if="!$store.state.login_user" @click="login">ログイン</v-btn>
       <DropDown v-if="$store.state.login_user" />
       <v-progress-linear
-        :active="$store.state.isloading"
-        :indeterminate="$store.state.isloading"
+        :active="$store.state.isLoading"
+        :indeterminate="$store.state.isLoading"
         absolute bottom color="red accent-4"
       />
     </v-app-bar>
