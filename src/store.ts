@@ -2,13 +2,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from 'firebase';
 import router from './router';
+import { State, Markdown } from './interface';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     login_user: null,
-    isloading: true,
+    isLoading: true,
     theme: {
       dark: true,
     },
@@ -22,18 +23,18 @@ export default new Vuex.Store({
 
     deleteLoginUser(state): void {
       state.login_user = null;
-      state.isloading = !state.isloading;
+      state.isLoading = !state.isLoading;
     },
 
     toggleLoading(state) {
-      state.isloading = !state.isloading;
+      state.isLoading = !state.isLoading;
     },
 
-    addMarkdown(state: { markdowns: object[]}, markdown: object) {
+    addMarkdown(state: State, markdown: object) {
       state.markdowns.push(markdown);
     },
 
-    updateMarkdown(state: { markdowns: object[]} , markdown: {id: string, markdownText: string}): void {
+    updateMarkdown(state: State , markdown: Markdown): void {
       const index: number = state.markdowns.findIndex((md: any) => md.id === markdown.id);
       state.markdowns[index] = markdown;
     },
