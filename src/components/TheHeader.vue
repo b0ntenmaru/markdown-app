@@ -8,7 +8,7 @@
       <v-btn
         style="margin-right: 10px"
         color="primary" fab small dark
-        v-if="$store.state.login_user"
+        v-if="$store.state.login_user && this.$route.name !== 'edit'"
         @click="addMarkdown"
       >
         <v-icon>mdi-pencil</v-icon>
