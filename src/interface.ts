@@ -2,7 +2,7 @@
 // stateとfirestoreに送られるmarkdownオブジェクトのinterfaceを書いていく
 
 export interface State {
-  login_user: object | null;
+  loginUser: object | null;
   isLoading: boolean;
   theme: {
     dark: boolean,

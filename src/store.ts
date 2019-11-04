@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    login_user: null,
+    loginUser: null,
     isLoading: true,
     theme: {
       dark: true,
@@ -18,11 +18,11 @@ export default new Vuex.Store({
   // TODO 引数がobjectとなるケースが多いので別ファイルでinterfaceを用意する
   mutations: {
     setLoginUser(state, user): void {
-      state.login_user = user;
+      state.loginUser = user;
     },
 
     deleteLoginUser(state): void {
-      state.login_user = null;
+      state.loginUser = null;
       state.isLoading = !state.isLoading;
     },
 
@@ -95,9 +95,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    userName: (state: any) => state.login_user ? state.login_user.displayName : '',
-    photoURL: (state: any) => state.login_user ? state.login_user.photoURL : '',
-    uid: (state: any) => state.login_user ? state.login_user.uid : null,
+    userName: (state: any) => state.loginUser ? state.loginUser.displayName : '',
+    photoURL: (state: any) => state.loginUser ? state.loginUser.photoURL : '',
+    uid: (state: any) => state.loginUser ? state.loginUser.uid : null,
     // tslint:disable-next-line: max-line-length
     getMarkdownById: (state: any) => (id: string) => state.markdowns.find((markdown: {id: string}) => markdown.id === id),
   },

@@ -1,7 +1,7 @@
 <template>
   <v-container text-xs-center justify-center class="index-container">
     <!-- 非ログイン時 -->
-    <v-layout row wrap v-if="!$store.state.login_user">
+    <v-layout row wrap v-if="!$store.state.loginUser">
       <v-flex xs12>
         <h1>Mackdown App</h1>
         <p>開発中</p>

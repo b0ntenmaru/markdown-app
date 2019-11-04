@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- header -->
-    <Header :isLoading="$store.state.isLoading" :loginUser="$store.state.login_user" />
+    <Header :isLoading="$store.state.isLoading" :loginUser="$store.state.loginUser" />
     <v-content>
       <!-- ここにコンポーネントを配置される -->
       <!-- router-view はvue-routerに登録されていえるURLのコンポーネントを表示する -->
