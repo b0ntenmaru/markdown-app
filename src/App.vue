@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- header -->
-    <TheHeader />
+    <TheHeader :isLoading="$store.state.isLoading" :loginUser="$store.state.login_user" />
     <v-content>
       <!-- ここにコンポーネントを配置される -->
       <!-- router-view はvue-routerに登録されていえるURLのコンポーネントを表示する -->
@@ -31,6 +31,7 @@ export default Vue.extend({
         this.toggleLoading();
       } else {
         this.deleteLoginUser();
+        this.toggleLoading();
       }
     });
   },
