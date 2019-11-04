@@ -30,7 +30,7 @@ import firebase from 'firebase';
 import DropDown from '../components/DropDown.vue';
 
 export default Vue.extend({
-  name: 'TheHeader',
+  name: 'Header',
   props: {
     isLoading: {
       type: Boolean || null,
