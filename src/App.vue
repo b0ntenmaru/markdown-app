@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- header -->
-    <TheHeader />
+    <Header :isLoading="$store.state.isLoading" :loginUser="$store.state.login_user" />
     <v-content>
       <!-- ここにコンポーネントを配置される -->
       <!-- router-view はvue-routerに登録されていえるURLのコンポーネントを表示する -->
@@ -14,13 +14,13 @@
 import Vue from 'vue';
 import { mapActions } from 'vuex';
 
-import TheHeader from './components/TheHeader.vue';
+import Header from './components/Header.vue';
 import firebase from 'firebase';
 
 export default Vue.extend({
   name: 'App',
   components: {
-    TheHeader,
+    Header,
   },
 
   created() {
@@ -31,6 +31,7 @@ export default Vue.extend({
         this.toggleLoading();
       } else {
         this.deleteLoginUser();
+        this.toggleLoading();
       }
     });
   },

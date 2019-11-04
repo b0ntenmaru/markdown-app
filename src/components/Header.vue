@@ -8,16 +8,16 @@
       <v-btn
         style="margin-right: 10px"
         color="primary" fab small dark
-        v-if="$store.state.login_user && this.$route.name !== 'edit'"
+        v-if="loginUser && this.$route.name !== 'edit'"
         @click="addMarkdown"
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <v-btn color="info" v-if="!$store.state.login_user" @click="login">ログイン</v-btn>
-      <DropDown v-if="$store.state.login_user" />
+      <v-btn color="info" v-if="!loginUser" @click="login">ログイン</v-btn>
+      <DropDown v-if="loginUser" />
       <v-progress-linear
-        :active="$store.state.isLoading"
-        :indeterminate="$store.state.isLoading"
+        :active="isLoading"
+        :indeterminate="isLoading"
         absolute bottom color="red accent-4"
       />
     </v-app-bar>
@@ -30,7 +30,17 @@ import firebase from 'firebase';
 import DropDown from '../components/DropDown.vue';
 
 export default Vue.extend({
-  name: 'TheHeader',
+  name: 'Header',
+  props: {
+    isLoading: {
+      type: Boolean || null,
+      default: null,
+    },
+    loginUser: {
+      type: Object || null,
+      default: null,
+    },
+  },
   components: {
     DropDown,
   },
