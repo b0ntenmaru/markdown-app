@@ -1,6 +1,6 @@
 <template>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase" @click="$router.push({name: 'index'})">
+      <v-toolbar-title class="headline text-uppercase">
         <span >MarkDown App</span>
       </v-toolbar-title>
 
@@ -13,6 +13,16 @@
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
+
+      <v-btn
+        style="margin-right: 10px"
+        color="primary" fab small dark
+        v-if="loginUser && this.$route.name !== 'index'"
+        @click="$router.push({name: 'index'})"
+      >
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+
       <v-btn color="info" v-if="!loginUser" @click="login">ログイン</v-btn>
       <DropDown v-if="loginUser" />
       <v-progress-linear
